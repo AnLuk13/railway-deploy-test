@@ -5,7 +5,7 @@ const app = express();
 const PORT = 8080;
 const INSTANCE_NAME = "Server 1";  // Unique name for this instance
 
-app.get("/", (req, res) => {
+app.get("/server1", (req, res) => {
     const content = fs.readFileSync("test.txt", "utf8");
     res.send(`<h1>${INSTANCE_NAME} Response</h1><pre>${content}</pre>`);
     console.log(`✅ Request handled by ${INSTANCE_NAME}`);
