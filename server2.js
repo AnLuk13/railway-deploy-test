@@ -12,6 +12,6 @@ app.get("/server2", (req, res) => {
     console.log(`✅ Request handled by ${INSTANCE_NAME}`);
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
     console.log(`🚀 ${INSTANCE_NAME} running on port ${PORT}`);
 });

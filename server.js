@@ -23,6 +23,6 @@ app.get("/", async (req, res) => {
 });
 
 // Start the main gateway server
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
     console.log(`🚀 Gateway Server running on port ${PORT}`);
 });
