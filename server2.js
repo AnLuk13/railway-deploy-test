@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 
-const PORT = process.env.PORT || 8081;  // Different port
+const PORT = 8081;  // Different port
 const INSTANCE_NAME = "Server 2";  // Unique identifier
 
 app.get("/", (req, res) => {

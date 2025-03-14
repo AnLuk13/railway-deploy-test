@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 const INSTANCE_NAME = "Server 1";  // Unique name for this instance
 
 app.get("/", (req, res) => {
