@@ -1,4 +1,5 @@
-FROM node:18
+# Use a base Node.js image
+FROM node:18 AS app
 
 # Set working directory
 WORKDIR /app
@@ -7,11 +8,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy all files
+# Copy the rest of the application files
 COPY . .
 
-# Expose port
-EXPOSE 3000
+# Expose the internal Express port
+EXPOSE 8080
 
-# Start the server
+# Start the Express server
 CMD ["npm", "start"]
