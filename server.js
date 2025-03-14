@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
     res.send(`<h1>File Content:</h1><pre>${content}</pre>`);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 console.log(`📡 Railway assigned PORT: ${process.env.PORT || "No PORT assigned (using default 8080)"}`);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

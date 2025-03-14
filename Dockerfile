@@ -1,5 +1,5 @@
-# Use a base Node.js image
-FROM node:18 AS app
+# Use official Node.js image
+FROM node:18
 
 # Set working directory
 WORKDIR /app
@@ -8,11 +8,22 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application files
+# Copy the rest of the files
 COPY . .
 
-# Expose the internal Express port
-EXPOSE 8080
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx supervisor
 
-# Start the Express server
-CMD ["npm", "start"]
+# Remove default Nginx config and copy our custom one
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
+# Copy Supervisor config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose Nginx port (80)
+EXPOSE 80
+
+# Start Supervisor (which runs both Express & Nginx)
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
