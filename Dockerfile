@@ -1,18 +1,17 @@
-# Alegem imaginea de bază
 FROM node:18
 
-# Setăm directorul de lucru în container
+# Set working directory
 WORKDIR /app
 
-# Copiem fișierele necesare
+# Copy package.json and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copiem restul fișierelor aplicației
+# Copy all files
 COPY . .
 
-# Setăm portul pe care rulează aplicația
+# Expose port
 EXPOSE 3000
 
-# Pornim aplicația
+# Start the server
 CMD ["npm", "start"]

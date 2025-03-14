@@ -1,0 +1,20 @@
+{
+  "name": "railway-deploy-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnLuk13/railway-deploy-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnLuk13/railway-deploy-test/issues"
+  },
+  "homepage": "https://github.com/AnLuk13/railway-deploy-test#readme"
+}
