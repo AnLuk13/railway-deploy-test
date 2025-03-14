@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/AnLuk13/railway-deploy-test/issues"
   },
-  "homepage": "https://github.com/AnLuk13/railway-deploy-test#readme"
+  "homepage": "https://github.com/AnLuk13/railway-deploy-test#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
