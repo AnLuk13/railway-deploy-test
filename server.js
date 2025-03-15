@@ -1,18 +1,30 @@
 const express = require("express");
+const axios = require("axios"); // Use axios to fetch data
 const fs = require("fs");
 const app = express();
 
 const PORT = 8080;
 
-// Gateway Route (Round-Robin Load Balancer)
+// Backend routes
 const servers = ["/server1", "/server2"];
 let requestCount = 0;
-app.get("/", (req, res) => {
-    const targetRoute = servers[requestCount % servers.length];
+
+// Handle `/` and fetch from `/server1` or `/server2`
+app.get("/", async (req, res) => {
+    const targetRoute = servers[requestCount % servers.length]; // Alternate between servers
     requestCount++;
-    
-    console.log(`🔀 Redirecting / to ${targetRoute}`);
-    res.redirect(targetRoute);  // Forward to either /server1 or /server2
+
+    try {
+        console.log(`🔀 Fetching response from: ${targetRoute}`);
+        // Simulate fetching response from internal API
+        const response = await axios.get(`http://localhost:${PORT}${targetRoute}`);
+        
+        // Add info about which server handled the request
+        res.send(`<h2>Response from ${targetRoute}</h2>${response.data}`);
+    } catch (error) {
+        console.error("❌ Error fetching from backend:", error.message);
+        res.status(500).send("Error fetching response from backend");
+    }
 });
 
 // Server 1 Route
