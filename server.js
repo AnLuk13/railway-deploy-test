@@ -7,7 +7,7 @@ const app = express();
 const PORT = 8080;
 
 // Use BASE_URL from environment or fallback to localhost
-const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+const BASE_URL = process.env.BASE_URL;
 
 const servers = [`${BASE_URL}/server1`, `${BASE_URL}/server2`];
 let requestCount = 0;
