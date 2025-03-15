@@ -1,26 +1,26 @@
+require("dotenv").config(); // Load .env variables
 const express = require("express");
-const axios = require("axios"); // Use axios to fetch data
+const axios = require("axios");
 const fs = require("fs");
 const app = express();
 
 const PORT = 8080;
 
-// Backend routes
-const servers = ["/server1", "/server2"];
+// Use BASE_URL from environment or fallback to localhost
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+
+const servers = [`${BASE_URL}/server1`, `${BASE_URL}/server2`];
 let requestCount = 0;
 
 // Handle `/` and fetch from `/server1` or `/server2`
 app.get("/", async (req, res) => {
-    const targetRoute = servers[requestCount % servers.length]; // Alternate between servers
+    const targetServer = servers[requestCount % servers.length];
     requestCount++;
 
     try {
-        console.log(`🔀 Fetching response from: ${targetRoute}`);
-        // Simulate fetching response from internal API
-        const response = await axios.get(`http://localhost:${PORT}${targetRoute}`);
-        
-        // Add info about which server handled the request
-        res.send(`<h2>Response from ${targetRoute}</h2>${response.data}`);
+        console.log(`🔀 Fetching response from: ${targetServer}`);
+        const response = await axios.get(targetServer);
+        res.send(`<h2>Response from ${targetServer}</h2>${response.data}`);
     } catch (error) {
         console.error("❌ Error fetching from backend:", error.message);
         res.status(500).send("Error fetching response from backend");
