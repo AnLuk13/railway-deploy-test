@@ -2,14 +2,13 @@ require("dotenv").config(); // Load .env variables
 const express = require("express");
 const axios = require("axios");
 const fs = require("fs");
-const { log } = require("console");
 const app = express();
 
 const PORT = 8080;
 
 const BASE_URL = process.env.BASE_URL;
 
-const servers = ["/server1", "/server2"];
+const servers = [`${BASE_URL}/server1`, `${BASE_URL}/server2`];
 let requestCount = 0;
 
 // Handle `/` and fetch from `/server1` or `/server2`
@@ -20,7 +19,7 @@ app.get("/", async (req, res) => {
 
     try {
         console.log(`🔀 Fetching response from: ${targetServer}`);
-        const response = await axios.get(`${BASE_URL}${targetServer}`);
+        const response = await axios.get(targetServer);
         res.send(`<h2>Response from ${targetServer}</h2>${response.data}`);
     } catch (error) {
         console.error("❌ Error fetching from backend:", error.message);
