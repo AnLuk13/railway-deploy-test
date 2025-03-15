@@ -17,14 +17,14 @@ app.get("/", (req, res) => {
 
 // Server 1 Route
 app.get("/server1", (req, res) => {
-    const content = fs.readFileSync("test1.txt", "utf8");
+    const content = fs.readFileSync("test.txt", "utf8");
     res.send(`<h1>Server 1 Response</h1><pre>${content}</pre>`);
     console.log(`✅ Request handled by Server 1`);
 });
 
 // Server 2 Route
 app.get("/server2", (req, res) => {
-    const content = fs.readFileSync("test2.txt", "utf8");
+    const content = fs.readFileSync("test.txt", "utf8");
     res.send(`<h1>Server 2 Response</h1><pre>${content}</pre>`);
     console.log(`✅ Request handled by Server 2`);
 });
